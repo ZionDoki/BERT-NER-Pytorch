@@ -4,7 +4,7 @@ BERT for Chinese NER.
 
 ### dataset list
 
-1. cner: datasets/cner
+1. cner: datasets/cner[已经有了]
 2. CLUENER: https://github.com/CLUEbenchmark/CLUENER
 
 ### model list
@@ -51,6 +51,15 @@ Input format (prefer BIOS tag scheme), with each character its label for one lin
 |  |  └── vocab.txt
 |  |  └── ......
 ```
+
+pytorch版的预训练模型可以在在这里下载：
+
+config: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-config.json
+vocab: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-vocab.txt
+model: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-pytorch_model.bin
+
+也可以根据这个代码将tf版本转换为pytorch版本
+
 
 ### CLUENER result
 
