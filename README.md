@@ -31,9 +31,7 @@ https://github.com/JackKuo666/convert_tf_bert_model_to_pytorch
 ```
 
 #### 0.3 自定义数据集或者CLUENER数据集下载（可选）
-参考步骤[1.数据集]
 
-### 1. 数据集
 ```text
 ├── BERT-NER-Pytorch
 |  └── datasets
@@ -42,19 +40,18 @@ https://github.com/JackKuo666/convert_tf_bert_model_to_pytorch
 |  |  └── ......
 ```
 
-
 1. cner: datasets/cner  [已经有了]
 2. CLUENER: https://github.com/CLUEbenchmark/CLUENER
 3. 你也可以自己制作数据集放在这里
 
-### 2. 模型列表
+### 1. 模型列表
 这里有三个模型：
 
 1. BERT+Softmax
 2. BERT+CRF
 3. BERT+Span
 
-### 3.数据输入格式
+### 2.数据输入格式
 
 1.输入格式是：`BIOS`标注策略，但是如果有`BME`格式的会将`ME`转换为`I`.
 
@@ -73,9 +70,9 @@ https://github.com/JackKuo666/convert_tf_bert_model_to_pytorch
 他	O
 ```
 
-### 4.运行代码
+### 3.运行代码
 
-#### 1.默认`cner`是可以训练的
+#### 3.1.默认`cner`是可以训练的
 ```
 sh scripts/run_ner_crf.sh
 ```
@@ -83,10 +80,10 @@ sh scripts/run_ner_crf.sh
 ```
 sh scripts/run_ner_crf_predict.sh
 ```
-#### 2.如果要运行其他数据集需要修改：
+#### 3.2.如果要运行其他数据集需要修改：
 
-##### 1.修改```run_ner_crf.sh```中的`TASK_NAME="cner"`；
-##### 2.仿照`/processors/ner_seq.py`中的`class CnerProcessor(DataProcessor):`构造自己的Processor（只需要修改其中的`    def get_labels(self):`为新数据集的labels），同时注册该类：
+##### 3.2.1.修改```run_ner_crf.sh```中的`TASK_NAME="cner"`；
+##### 3.2.2.仿照`/processors/ner_seq.py`中的`class CnerProcessor(DataProcessor):`构造自己的Processor（只需要修改其中的`    def get_labels(self):`为新数据集的labels），同时注册该类：
 ```
 ner_processors = {
     "cner": CnerProcessor,
