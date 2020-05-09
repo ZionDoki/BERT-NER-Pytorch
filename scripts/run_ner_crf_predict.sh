@@ -3,10 +3,11 @@ export BERT_BASE_DIR=$CURRENT_DIR/prev_trained_model/bert-base
 export DATA_DIR=$CURRENT_DIR/datasets
 export OUTPUR_DIR=$CURRENT_DIR/outputs
 TASK_NAME="cner"
+export BERT_TRAINED_DIR=$CURRENT_DIR/outputs/${TASK_NAME}_output/bert
 #
 python run_ner_crf.py \
   --model_type=bert \
-  --model_name_or_path=$BERT_BASE_DIR \
+  --model_name_or_path=$BERT_TRAINED_DIR \
   --task_name=$TASK_NAME \
   --do_predict \
   --do_lower_case \
