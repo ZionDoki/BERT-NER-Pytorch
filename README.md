@@ -1,11 +1,19 @@
 ## Chinese NER using Bert
+基于pytorch版本的bert的中文NER
 
 BERT for Chinese NER. 
 
-### dataset list
+### 数据集
 
 1. cner: datasets/cner[已经有了]
 2. CLUENER: https://github.com/CLUEbenchmark/CLUENER
+3. 你也可以自己制作数据集放在这里
+├── prev_trained_model
+|  └── bert_base
+|  |  └── pytorch_model.bin
+|  |  └── config.json
+|  |  └── vocab.txt
+|  |  └── ......
 
 ### model list
 
