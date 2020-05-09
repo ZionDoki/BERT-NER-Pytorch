@@ -1,35 +1,66 @@
 ## Chinese NER using Bert
 基于pytorch版本的bert的中文NER
 
-BERT for Chinese NER. 
+### 0.准备
+#### 0.1 依赖
+1. PyTorch=1.1.0+
+2. cuda=9.0
+3. python3.6+
 
-### 数据集
+#### 0.3 pytorch 版本的预训练模型下载
+pytorch版的预训练模型可以在在这里下载：
 
-1. cner: datasets/cner[已经有了]
-2. CLUENER: https://github.com/CLUEbenchmark/CLUENER
-3. 你也可以自己制作数据集放在这里
+config: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-config.json
+
+vocab: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-vocab.txt
+
+model: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-pytorch_model.bin
+
+也可以根据这个代码将tf版本转换为pytorch版本
+https://github.com/JackKuo666/convert_tf_bert_model_to_pytorch
+
+
+
+
+预训练模型要这样存放：
+```text
 ├── prev_trained_model
 |  └── bert_base
 |  |  └── pytorch_model.bin
 |  |  └── config.json
 |  |  └── vocab.txt
 |  |  └── ......
+```
 
-### model list
+#### 0.4 自定义数据集或者CLUENER数据集下载（可选）
+参考步骤[1.数据集]
+
+### 1. 数据集
+```text
+├── BERT-NER-Pytorch
+|  └── datasets
+|  |  └── cluener
+|  |  └── cner
+|  |  └── ......
+```
+
+
+1. cner: datasets/cner  [已经有了]
+2. CLUENER: https://github.com/CLUEbenchmark/CLUENER
+3. 你也可以自己制作数据集放在这里
+
+### 2. 模型列表
+这里有三个模型：
 
 1. BERT+Softmax
 2. BERT+CRF
 3. BERT+Span
 
-### requirement
+### 3.数据输入格式
 
-1. PyTorch=1.1.0+
-2. cuda=9.0
-3. python3.6+
+1.输入格式是：`BIOS`标注策略，但是如果有`BME`格式的会将`ME`转换为`I`.
 
-### input format
-
-Input format (prefer BIOS tag scheme), with each character its label for one line. Sentences are splited with a null line.
+2.中文数据集是每个字符存放一行，标签与字符之间有一个空格，句子之间有一个空行。
 
 ```text
 美	B-LOC
@@ -44,32 +75,31 @@ Input format (prefer BIOS tag scheme), with each character its label for one lin
 他	O
 ```
 
-### run the code
+### 4.运行代码
 
-1. Modify the configuration information in `run_ner_xxx.py` or `run_ner_xxx.sh` .
-2. `sh scripts/run_ner_xxx.sh`
+#### 1.默认`cner`是可以训练的
+```
+sh scripts/run_ner_crf.sh
+```
+默认预测:
+```
+sh scripts/run_ner_crf_predict.sh
+```
+#### 2.如果要运行其他数据集需要修改：
 
-**note**: file structure of the model
-
-```text
-├── prev_trained_model
-|  └── bert_base
-|  |  └── pytorch_model.bin
-|  |  └── config.json
-|  |  └── vocab.txt
-|  |  └── ......
+##### 1.修改```run_ner_crf.sh```中的`TASK_NAME="cner"`；
+##### 2.仿照`/processors/ner_seq.py`中的`class CnerProcessor(DataProcessor):`构造自己的Processor（只需要修改其中的`    def get_labels(self):
+`为新数据集的labels），同时注册该类：
+```
+ner_processors = {
+    "cner": CnerProcessor,
+    "datasets下文件夹名字": 新增类名,
+    'cluener':CluenerProcessor
+}
 ```
 
-pytorch版的预训练模型可以在在这里下载：
-
-config: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-config.json
-
-vocab: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-vocab.txt
-
-model: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-pytorch_model.bin
-
-也可以根据这个代码将tf版本转换为pytorch版本
-https://github.com/JackKuo666/convert_tf_bert_model_to_pytorch
+---
+# 以下为原作者的结果：
 
 ### CLUENER result
 
