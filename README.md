@@ -55,11 +55,13 @@ Input format (prefer BIOS tag scheme), with each character its label for one lin
 pytorch版的预训练模型可以在在这里下载：
 
 config: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-config.json
+
 vocab: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-vocab.txt
+
 model: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-pytorch_model.bin
 
 也可以根据这个代码将tf版本转换为pytorch版本
-
+https://github.com/JackKuo666/convert_tf_bert_model_to_pytorch
 
 ### CLUENER result
 
