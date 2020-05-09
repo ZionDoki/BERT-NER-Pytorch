@@ -7,7 +7,7 @@
 2. cuda=9.0
 3. python3.6+
 
-#### 0.3 pytorch 版本的预训练模型下载
+#### 0.2 pytorch 版本的预训练模型下载
 pytorch版的预训练模型可以在在这里下载：
 
 config: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-config.json
@@ -20,8 +20,6 @@ model: https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese-pyt
 https://github.com/JackKuo666/convert_tf_bert_model_to_pytorch
 
 
-
-
 预训练模型要这样存放：
 ```text
 ├── prev_trained_model
@@ -32,7 +30,7 @@ https://github.com/JackKuo666/convert_tf_bert_model_to_pytorch
 |  |  └── ......
 ```
 
-#### 0.4 自定义数据集或者CLUENER数据集下载（可选）
+#### 0.3 自定义数据集或者CLUENER数据集下载（可选）
 参考步骤[1.数据集]
 
 ### 1. 数据集
