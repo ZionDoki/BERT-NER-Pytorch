@@ -91,6 +91,15 @@ ner_processors = {
     'cluener':CluenerProcessor
 }
 ```
+### 其他
+另外需要注意的是，这个项目没有提供默认的设置GPU的接口，可以在`run_ner_crf.py`中设置：
+```
+def main():
+    import os
+    os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+    
+    args = get_argparse().parse_args()
+```
 
 ---
 # 以下为原作者的结果：
