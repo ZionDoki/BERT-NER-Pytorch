@@ -86,8 +86,7 @@ sh scripts/run_ner_crf_predict.sh
 #### 2.如果要运行其他数据集需要修改：
 
 ##### 1.修改```run_ner_crf.sh```中的`TASK_NAME="cner"`；
-##### 2.仿照`/processors/ner_seq.py`中的`class CnerProcessor(DataProcessor):`构造自己的Processor（只需要修改其中的`    def get_labels(self):
-`为新数据集的labels），同时注册该类：
+##### 2.仿照`/processors/ner_seq.py`中的`class CnerProcessor(DataProcessor):`构造自己的Processor（只需要修改其中的`    def get_labels(self):`为新数据集的labels），同时注册该类：
 ```
 ner_processors = {
     "cner": CnerProcessor,
